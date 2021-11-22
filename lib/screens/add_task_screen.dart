@@ -27,8 +27,9 @@ class AddTasksScreen extends StatelessWidget {
               color: Colors.lightBlueAccent,
             ),
           ),
+          // Container of the TextField
           Container(
-            margin: EdgeInsets.only(bottom: 5.0),
+            margin: EdgeInsets.only(bottom: 15.0),
             child: TextField(
               autofocus: true,
               textAlign: TextAlign.center,

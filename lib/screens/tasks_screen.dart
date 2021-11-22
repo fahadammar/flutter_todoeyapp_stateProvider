@@ -15,7 +15,21 @@ class TasksScreen extends StatelessWidget {
           // here below in the builder we can create a function returning the widget
           // for code refactoring, we shall use the anonymous function as we have to return
           // only one funtion
-          showModalBottomSheet(context: context, builder: (context) => AddTasksScreen());
+          // Setting the isScrolledControlled property to true you can make the modal take up the full screen
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              // To have the AddTaskScreen sit just above the keyboard,
+              // you can wrap it inside a SingleChildScrollView, which determines the padding at the bottom using a MediaQuery.
+              builder: (context) => SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom
+                      ),
+                      child: AddTasksScreen()
+                  )
+              ),
+          );
         },
       ),
       // as by default the crossAxis of column is center, so change to start
