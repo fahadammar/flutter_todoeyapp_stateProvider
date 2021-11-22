@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_provider/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
 
@@ -54,6 +55,8 @@ class TasksScreen extends StatelessWidget {
           // Bottom Dialog
           Expanded(
             child: Container(
+              // Below symmetric padding horizontal is for left and right
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -61,6 +64,7 @@ class TasksScreen extends StatelessWidget {
                     topRight: Radius.circular(20.0)
                 ),
               ),
+              child: TasksList(),
             ),
           ),
         ],
@@ -68,3 +72,7 @@ class TasksScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
