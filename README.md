@@ -1,6 +1,10 @@
-# flutter_state_provider
+# Todoey Application - State Management - Provider
 
-This project is the topic of Flutter State Management, using the Provider
+This project is the topic of Flutter State Management, using the Provider.
+In this project the state management approach is Provider.
+
+<a href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/options">
+List of state management approaches </a>
 
 ## Getting Started
 
