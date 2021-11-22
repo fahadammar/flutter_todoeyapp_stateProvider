@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_provider/screens/add_task_screen.dart';
 import 'package:flutter_state_provider/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
@@ -10,6 +11,12 @@ class TasksScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
+        onPressed: () {
+          // here below in the builder we can create a function returning the widget
+          // for code refactoring, we shall use the anonymous function as we have to return
+          // only one funtion
+          showModalBottomSheet(context: context, builder: (context) => AddTasksScreen());
+        },
       ),
       // as by default the crossAxis of column is center, so change to start
       body: Column(
