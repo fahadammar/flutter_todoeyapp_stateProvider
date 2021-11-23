@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_provider/model/task.dart';
 import 'package:flutter_state_provider/screens/add_task_screen.dart';
 import 'package:flutter_state_provider/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: "This is task1"),
+    Task(name: "This is task2"),
+    Task(name: "This is task3"),
+  ];
+  String newTaskTxt;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +40,17 @@ class TasksScreen extends StatelessWidget {
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom
                       ),
-                      child: AddTasksScreen()
+                      child: AddTasksScreen(
+                        onTextChangedCallBack: (String changeTxt) {
+                            newTaskTxt = changeTxt;
+                        } ,
+                        onAddTaskCallBack: () {
+                          setState(() {
+                            tasks.add(Task(name: newTaskTxt));
+                          });
+                          Navigator.pop(context);
+                        },
+                      )
                   )
               ),
           );
@@ -64,7 +88,7 @@ class TasksScreen extends StatelessWidget {
                 ),
                 // Tasks Text
                 Text(
-                  '12 Tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18
@@ -74,6 +98,7 @@ class TasksScreen extends StatelessWidget {
             ),
           ),
           // Bottom Dialog
+          // Expanded contains the Tasks list in Container
           Expanded(
             child: Container(
               // Below symmetric padding horizontal is for left and right
@@ -85,7 +110,9 @@ class TasksScreen extends StatelessWidget {
                     topRight: Radius.circular(20.0)
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(
+                  tasks: this.tasks
+                ),
             ),
           ),
         ],

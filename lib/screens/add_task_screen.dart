@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AddTasksScreen extends StatelessWidget {
+  final Function onTextChangedCallBack;
+  final Function onAddTaskCallBack;
+
+  AddTasksScreen({this.onTextChangedCallBack, this.onAddTaskCallBack});
+
   @override
   Widget build(BuildContext context) {
     // There are two containers which are going to come, via the bottom sheet
@@ -20,6 +25,7 @@ class AddTasksScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          // Title - Add Task
           Text('Add Task',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -33,6 +39,7 @@ class AddTasksScreen extends StatelessWidget {
             child: TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              onChanged: (newTxt) {this.onTextChangedCallBack(newTxt);}
             ),
           ),
           // Container of the TextButton
@@ -41,9 +48,7 @@ class AddTasksScreen extends StatelessWidget {
                   minimumSize: Size(88, 44),
                   backgroundColor: Colors.blue,
               ),
-              onPressed: (){
-                // here the code will be added, for adding the task
-              },
+              onPressed: this.onAddTaskCallBack,
               child: Text(
                 "Add Task",
                 style: TextStyle(
