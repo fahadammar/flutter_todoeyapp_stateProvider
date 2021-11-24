@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
 
-  String newTaskTxt;
+
 
 
   @override
@@ -32,17 +32,7 @@ class TasksScreen extends StatelessWidget {
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom
                       ),
-                      child: AddTasksScreen(
-                        onTextChangedCallBack: (String changeTxt) {
-                            newTaskTxt = changeTxt;
-                        } ,
-                        onAddTaskCallBack: () {
-                          // setState(() {
-                          //   tasks.add(Task(name: newTaskTxt));
-                          // });
-                          Navigator.pop(context);
-                        },
-                      )
+                      child: AddTasksScreen(),
                   )
               ),
           );

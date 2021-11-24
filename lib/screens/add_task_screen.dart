@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_provider/model/task_data.dart';
+import 'package:provider/provider.dart';
 
-class AddTasksScreen extends StatelessWidget {
-  final Function onTextChangedCallBack;
-  final Function onAddTaskCallBack;
+class AddTasksScreen extends StatefulWidget {
+  @override
+  _AddTasksScreenState createState() => _AddTasksScreenState();
+}
 
-  AddTasksScreen({this.onTextChangedCallBack, this.onAddTaskCallBack});
+class _AddTasksScreenState extends State<AddTasksScreen> {
+  String newTaskTxt;
 
   @override
   Widget build(BuildContext context) {
     // There are two containers which are going to come, via the bottom sheet
     // the background dark color is coming from the above container, and the below container
-    // is the continer via which the user can add the tasks
+    // is the container via which the user can add the tasks
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -36,10 +40,14 @@ class AddTasksScreen extends StatelessWidget {
           // Container of the TextField
           Container(
             margin: EdgeInsets.only(bottom: 15.0),
+            // TextField
             child: TextField(
               autofocus: true,
               textAlign: TextAlign.center,
-              onChanged: (newTxt) {this.onTextChangedCallBack(newTxt);}
+              onChanged: (newTxt) {
+                newTaskTxt = newTxt;
+                print("Inserted Text: $newTaskTxt");
+              }
             ),
           ),
           // Container of the TextButton
@@ -48,7 +56,11 @@ class AddTasksScreen extends StatelessWidget {
                   minimumSize: Size(88, 44),
                   backgroundColor: Colors.blue,
               ),
-              onPressed: this.onAddTaskCallBack,
+              onPressed: () {
+                print("Inserted Text OnButton Click: $newTaskTxt");
+                Provider.of<TaskData>(context, listen: false).insertNewTask(newTaskTxt);
+                Navigator.pop(context);
+              },
               child: Text(
                 "Add Task",
                 style: TextStyle(

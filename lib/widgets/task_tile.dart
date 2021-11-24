@@ -25,6 +25,7 @@ class TaskTile extends StatelessWidget {
   }
 }
 
+// This below widget is of no use
 class TaskCheckBox extends StatelessWidget {
   final bool checkboxFlag;
   final Function onPressedCheckBox;
