@@ -22,4 +22,10 @@ class TaskData extends ChangeNotifier {
     task.toggleDone();
     notifyListeners();
   }
+
+  void deleteTask (Task task){
+    print("Deleted: $task");
+    tasks.remove(task);
+    notifyListeners();
+  }
 }
