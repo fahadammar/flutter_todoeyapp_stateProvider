@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_state_provider/model/task.dart';
+import 'package:flutter_state_provider/model/task_data.dart';
 import 'package:flutter_state_provider/screens/add_task_screen.dart';
 import 'package:flutter_state_provider/widgets/tasks_list.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreen extends StatefulWidget {
 
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
+class TasksScreen extends StatelessWidget {
 
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: "This is task1"),
-    Task(name: "This is task2"),
-    Task(name: "This is task3"),
-  ];
   String newTaskTxt;
 
 
@@ -45,9 +37,9 @@ class _TasksScreenState extends State<TasksScreen> {
                             newTaskTxt = changeTxt;
                         } ,
                         onAddTaskCallBack: () {
-                          setState(() {
-                            tasks.add(Task(name: newTaskTxt));
-                          });
+                          // setState(() {
+                          //   tasks.add(Task(name: newTaskTxt));
+                          // });
                           Navigator.pop(context);
                         },
                       )
@@ -88,7 +80,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
                 // Tasks Text
                 Text(
-                  '${tasks.length} Tasks',
+                  '${Provider.of<TaskData>(context).taskLength} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18
@@ -110,9 +102,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20.0)
                 ),
               ),
-              child: TasksList(
-                  tasks: this.tasks
-                ),
+              child: TasksList(),
             ),
           ),
         ],
