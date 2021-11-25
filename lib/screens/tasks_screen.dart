@@ -7,9 +7,6 @@ import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
