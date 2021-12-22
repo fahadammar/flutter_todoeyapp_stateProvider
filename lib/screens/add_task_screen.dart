@@ -22,56 +22,54 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.0),
-              topLeft: Radius.circular(20.0)
-          ),
+              topRight: Radius.circular(20.0), topLeft: Radius.circular(20.0)),
         ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          // Title - Add Task
-          Text('Add Task',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 30.0,
-              color: Colors.lightBlueAccent,
-            ),
-          ),
-          // Container of the TextField
-          Container(
-            margin: EdgeInsets.only(bottom: 15.0),
-            // TextField
-            child: TextField(
-              autofocus: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            // Title - Add Task
+            Text(
+              'Add Task',
               textAlign: TextAlign.center,
-              onChanged: (newTxt) {
-                newTaskTxt = newTxt;
-                print("Inserted Text: $newTaskTxt");
-              }
+              style: TextStyle(
+                fontSize: 30.0,
+                color: Colors.lightBlueAccent,
+              ),
             ),
-          ),
-          // Container of the TextButton
-          TextButton(
+            // Container of the TextField
+            Container(
+              margin: EdgeInsets.only(bottom: 15.0),
+              // TextField
+              child: TextField(
+                  autofocus: true,
+                  textAlign: TextAlign.center,
+                  onChanged: (newTxt) {
+                    newTaskTxt = newTxt;
+                    print("Inserted Text: $newTaskTxt");
+                  }),
+            ),
+            // Container of the TextButton
+            TextButton(
               style: TextButton.styleFrom(
-                  minimumSize: Size(88, 44),
-                  backgroundColor: Colors.blue,
+                minimumSize: Size(88, 44),
+                backgroundColor: Colors.blue,
               ),
               onPressed: () {
                 print("Inserted Text OnButton Click: $newTaskTxt");
-                Provider.of<TaskData>(context, listen: false).insertNewTask(newTaskTxt);
+                Provider.of<TaskData>(context, listen: false)
+                    .insertNewTask(newTaskTxt);
                 Navigator.pop(context);
               },
               child: Text(
                 "Add Task",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
               ),
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
       ),
     );
   }
